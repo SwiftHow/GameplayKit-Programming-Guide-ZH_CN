@@ -61,14 +61,23 @@ GameplayKit 中的 `GKEntity` 和 `GKComponent` 类利用了这一观念。每�
 
 ### 实体与组件设计的游戏示例
 
-**迷宫（Maze）**项目是基于一些经典解密游戏实现的。在这个游戏中，玩家必须探索并走出迷宫。然而迷宫中有四个怪物追杀玩家，玩家一旦被追到将会被传送到最初的入口处。
+**迷宫（Maze）**项目是基于一些经典解密游戏实现的。在这个游戏中，玩家必须探索并走出迷宫。然而迷宫中有四个怪物（原文中为敌人）追杀玩家，玩家一旦被追到将会被传送到最初的入口处。
 
 > 这个章节讨论的实例代码：[Maze: Getting Started with GameplayKit](https://developer.apple.com/sample-code/wwdc/2015/downloads/Maze.zip)。请下载，并在Xcode中查看。
 
 这个项目展示了*实体与组件*设计的作用（同时也说明了一些其他 GameplayKit 的功能）。在这个游戏中，玩家和怪物都是实体，不同类型的角色使用着不一样的组件集合。在示例代码中，你能发现三个`GKComponent`子类：
 
-- `AAPLSpriteComponent`：
-- `AAPLIntelligenceComponent`：
-- `AAPLPlayerControlcomponent`：
+- `AAPLSpriteComponent`：这个组件类为包含它的实体管理一些游戏逻辑，并将这些逻辑转化为屏幕上的动作。另外这些组件只将迷宫理解为整数网格，并且负责同步实体精灵在网格中的位置，这些实体精灵的视觉渲染和动画则有 SpriteKit 完成。因此，无论是玩家角色的实体和怪物角色的实体都会使用这个组件。
+
+  由于 *Sprite* 组件负责为游戏角色处理所有 SpriteKit 相关（或者说视觉渲染相关）的逻辑，所以其他的组件就不需要知道游戏场景的尺寸和动画等信息。如果将来游戏的视觉设计改变了（或者甚至转到另一个不同的渲染引擎中，如 SceneKit），其他的那些组件就不需要被重写了。
+
+- `AAPLIntelligenceComponent`：这个组件类只被怪物角色的实体使用，它负责提供允许实体独立移动并对玩家的行为作出反应的逻辑。为了追踪在任何时候哪个怪物应该做什么，这个 *Intelligence* 组件使用了一个状态机（请查看 [State Machines](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/StateMachine.html#//apple_ref/doc/uid/TP40015172-CH7-SW1) 章节）。同时，一部分逻辑使用了规则系统（请查看 [Rule Systems](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/StateMachine.html#//apple_ref/doc/uid/TP40015172-CH7-SW1) 章节）用以抽象出导致怪物不同行为的条件。这个组件还使用了自动寻路（请查看 [Pathfinding](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/Pathfinding.html#//apple_ref/doc/uid/TP40015172-CH3-SW1) 章节）来规划怪物在迷宫中的行进路线，同时调用 *Sprite* 组件来处理移动时精灵在屏幕上的表现。
+
+  由于 *Intelligence* 组件是通用的，它可以被其他不同类型的实体（甚至不是怪物）重用。举个例子，将来这个游戏的一个变种可能会包含一个由电脑控制的盟友角色，它将在游戏中追杀怪物。
+
+- `AAPLPlayerControlComponent`：这个组件只被玩家角色的实体使用，它负责将一些指向性输入（来源于玩家操作，如游戏遥控杆，键盘或者屏幕触摸事件等）转化为游戏世界中玩家角色的移动逻辑，并且同样调用 *Sprite* 组件来处理移动时精灵在屏幕上的表现。
+
+  由于 *Control* 组件主导了实体在迷宫中受控制方向上的移动，它可以被其他类型的实体重用。比如，将来这个游戏的一个变种通过玩家分别使用不同的`AAPLPlayerControlComponent`实例来实现多人联机游戏。
+
 
 虽然你可以直接使用`GKEntity`类（作为你自定义的`GKComponent`子类的容器），但是多个组件之间经常需要共享一些信息，比如它们提供了谁（哪个实体）的行为，等等。所以与其把这些信息放在组件中，不如创建`GKEntity`的子类。在*迷宫*游戏中，所有的组件类需要知道当前实体的位置信息，所以`AAPLEntity`类负责存放这些信息。
