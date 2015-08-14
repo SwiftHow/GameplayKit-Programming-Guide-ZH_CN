@@ -1,3 +1,5 @@
+# 实体与组件
+
 众所周知，设计一个复杂的游戏软件需要对项目架构有良好的规划。我们会发现有一些架构设计的并不合理，随着你的游戏功能和内容越来越多，原本简单的游戏 Demo 却会变得难以维护。GameplayKit 提供给你一个架构方式让你一开始就能获得更好的可重用性，并且帮你分解了一些游戏开发中可能遇到的各种各样的问题。
 
 在**实体与组件**这个结构中，**实体**可以是你的游戏相关的各类物体，它可以代表游戏中至关重要的角色，比如玩家或者敌人；可以代表一些仅仅存在于游戏世界中而不和玩家产生交互的物体，比如一个动态的装饰特效；它甚至可以是你游戏中的抽象概念或者 UI 元素，比如一个控制何时向游戏世界中添加新的敌人的管理器，或者一个管理玩家装备的系统。
@@ -22,7 +24,7 @@
 
 **图 3-1** 基于继承的设计
 
-![]()
+![](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/Art/entity_component_1_2x.png)
 
 ### 基于继承的架构阻碍了游戏的扩展和改进
 
@@ -30,7 +32,7 @@
 
 **图 3-2** 基于继承的设计遇到的阻碍
 
-![]()
+![](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/Art/entity_component_3_2x.png)
 
 如果你继续这样改进游戏，最终你的基类将会包含几乎它子类的所需的所有功能，而子类自身却为自己提供了很少的功能。这将导致代码变得越来越复杂而且难以维护，因为父类的逻辑中需要先判断子类的的 ID，再决定是否可以继续做接下来的动作，同时我们向父类添加新的功能时需要尤其小心因为此时的父类包含的太多的状态和行为。
 
@@ -42,7 +44,7 @@
 
 **图 3-3** 实体与组件模式组合功能
 
-![]()
+![](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/Art/entity_component_4_2x.png)
 
 ## 实体与组件模式的使用
 
