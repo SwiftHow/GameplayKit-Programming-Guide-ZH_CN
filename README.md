@@ -4,12 +4,12 @@
 关于章节顺序，会在翻译完成后统一整理。
 
 - 如果你对翻译感兴趣：请加入QQ群：364279588（Swift 中文翻译组）
+- 如果你对用Swift开发游戏，或者是一个游戏开发者，请加入QQ群：453564812 （Swift 游戏开发交流组）
 
 ## 如何参与
-- 请提交一个 [Issue](https://github.com/SwiftHow/GameplayKit-Programming-Guide-ZH_CN/issues)。
-- 或者联系 [Evilcome](https://github.com/Evilcome)，或者联系QQ：996102034，请注明翻译。
-- 取得联系后请认领章节，我会更新章节认领状态后。
-- 翻译完成后，传给我MD文档，或者使用Pull Request都可以。
+- 请提交一个 [Issue](https://github.com/SwiftHow/GameplayKit-Programming-Guide-ZH_CN/issues)，或者联系 [Evilcome](https://github.com/Evilcome)，或者联系QQ：996102034，请注明翻译。
+- 取得联系后请认领章节，我会更新章节认领状态。
+- 翻译完成后，传给我MD文档，或者使用Pull Request合并文件。
 
 ## 已完成章节
 | 原文 | 译文 | BLOG |
