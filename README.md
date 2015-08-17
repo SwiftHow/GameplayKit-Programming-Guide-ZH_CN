@@ -12,11 +12,11 @@
 - 翻译完成后，传给我MD文档，或者使用Pull Request合并文件。
 
 ## 已完成章节
-| 原文 | 译文 | BLOG |
-| ------ | ------ | ------ |
-| [Entities and Components](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/EntityComponent.html)  | [实体与组件](./Entities and Components.md)  | [翻译：GameplayKit 中的实体与组件](https://swift.how/2015/08/14/gameplaykit-entity-and-component-zh_cn/) |
-| [State Machines](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/StateMachine.html) | [状态机](./State Machines.md) | [翻译：GameplayKit 中的状态机](https://swift.how/2015/08/15/gameplaykit-state-machines-zh_cn/) |
-|  [Randomization](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/RandomSources.html#//apple_ref/doc/uid/TP40015172-CH9-SW1) | [随机化](./Randomization.md) | [翻译：GameplayKit 中的随机化](https://swift.how/2015/08/17/gameplaykit-randomization-zh_cn/) |
+| 原文 | 译文 | 译者 | BLOG |
+| ------ | ------ | ------ | ------ |
+| [Entities and Components](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/EntityComponent.html)  | [实体与组件](./Entities and Components.md) |[Evilcome](https://github.com/Evilcome) | [翻译：GameplayKit 中的实体与组件](https://swift.how/2015/08/14/gameplaykit-entity-and-component-zh_cn/) |
+| [State Machines](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/StateMachine.html) | [状态机](./State Machines.md) |[Evilcome](https://github.com/Evilcome) | [翻译：GameplayKit 中的状态机](https://swift.how/2015/08/15/gameplaykit-state-machines-zh_cn/) |
+|  [Randomization](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/RandomSources.html#//apple_ref/doc/uid/TP40015172-CH9-SW1) | [随机化](./Randomization.md) |[Evilcome](https://github.com/Evilcome) | [翻译：GameplayKit 中的随机化](https://swift.how/2015/08/17/gameplaykit-randomization-zh_cn/) |
 
 ## 未完成章节
 | 原文 | 认领状态 |
