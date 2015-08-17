@@ -3,6 +3,8 @@
 
 关于章节顺序，会在翻译完成后统一整理。
 
+- 如果你对翻译感兴趣：请加入QQ群：364279588（Swift 中文翻译组）
+
 ## 如何参与
 - 请提交一个 [Issue](https://github.com/SwiftHow/GameplayKit-Programming-Guide-ZH_CN/issues)。
 - 或者联系 [Evilcome](https://github.com/Evilcome)，或者联系QQ：996102034，请注明翻译。
