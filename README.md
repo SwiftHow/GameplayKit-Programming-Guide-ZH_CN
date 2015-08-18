@@ -21,8 +21,8 @@
 ## 未完成章节
 | 原文 | 认领状态 |
 | ------ | ------ |
-| [About GameplayKit](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172-CH1-SW1) | [seasidesun](https://github.com/seasidesun) 已认领 |
+| [About GameplayKit](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172-CH1-SW1) | [Evilcome](https://github.com/Evilcome) 已认领 |
 | [The Minmax Strategist](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/Minmax.html#//apple_ref/doc/uid/TP40015172-CH2-SW1) | 尚未认领 |
 | [Pathfinding](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/Pathfinding.html#//apple_ref/doc/uid/TP40015172-CH3-SW1) | [Evilcome](https://github.com/Evilcome) 已认领 |
 | [Agents, Goals, and Behaviors](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/Agent.html#//apple_ref/doc/uid/TP40015172-CH8-SW1) | [kenticny](https://github.com/kenticny) 已认领 |
-| [Rule Systems](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/RuleSystems.html#//apple_ref/doc/uid/TP40015172-CH10-SW1) | 尚未认领 |
+| [Rule Systems](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/RuleSystems.html#//apple_ref/doc/uid/TP40015172-CH10-SW1) | [seasidesun](https://github.com/seasidesun) 已认领 |
