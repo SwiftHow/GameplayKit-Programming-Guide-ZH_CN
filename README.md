@@ -18,12 +18,12 @@
 | [State Machines](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/StateMachine.html) | [状态机](./State Machines.md) | [翻译：GameplayKit 中的状态机](https://swift.how/2015/08/15/gameplaykit-state-machines-zh_cn/) |
 |  [Randomization](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/RandomSources.html#//apple_ref/doc/uid/TP40015172-CH9-SW1) | [随机化](./Randomization.md) | [翻译：GameplayKit 中的随机化](https://swift.how/2015/08/17/gameplaykit-randomization-zh_cn/) |
 | [Pathfinding](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/Pathfinding.html#//apple_ref/doc/uid/TP40015172-CH3-SW1)| [寻路](./Pathfinding.md) | [翻译：GameplayKit 中的寻路机制](https://swift.how/2015/08/18/gameplaykit-pathfinding-zh_cn/) |
+| [About GameplayKit](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172-CH1-SW1) | [关于 GameplayKit](./About GameplayKit.md) | 无 |
 
 
 ## 未完成章节
 | 原文 | 认领状态 |
 | ------ | ------ |
-| [About GameplayKit](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172-CH1-SW1) | [Evilcome](https://github.com/Evilcome) 已认领 |
-| [The Minmax Strategist](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/Minmax.html#//apple_ref/doc/uid/TP40015172-CH2-SW1) | 尚未认领 |
+| [The Minmax Strategist](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/Minmax.html#//apple_ref/doc/uid/TP40015172-CH2-SW1) | [Evilcome](https://github.com/Evilcome) 已认领 |
 | [Agents, Goals, and Behaviors](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/Agent.html#//apple_ref/doc/uid/TP40015172-CH8-SW1) | [kenticny](https://github.com/kenticny) 已认领 |
 | [Rule Systems](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/RuleSystems.html#//apple_ref/doc/uid/TP40015172-CH10-SW1) | [seasidesun](https://github.com/seasidesun) 已认领 |
