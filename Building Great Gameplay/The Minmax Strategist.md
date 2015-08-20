@@ -21,6 +21,7 @@
 >本章讨论的实例代码：[FourInARow: Using the GameplayKit Minmax Strategist for Opponent AI](https://developer.apple.com/library/prerelease/ios/samplecode/FourInARow/Introduction/Intro.html#//apple_ref/doc/uid/TP40016142)。请下载，并在Xcode中查看。
 
 **图 5-1** 四子棋游戏中有可能的下一步
+
 ![](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/Art/minmax_2x.png)
 
 图中，红方可以在棋盘七列中的任意一列放置一枚棋子。对于每一列，*策略*考虑了如果在该列放置棋子后游戏所处的状态，并为每一种结果给出评分。（上图只显示了几个可能情况。）
