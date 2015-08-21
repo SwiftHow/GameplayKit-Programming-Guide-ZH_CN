@@ -166,3 +166,55 @@ GameplayKit 中包含三个关键协议供你定义界面，并帮助 GameplayKi
     return playerTotal.integerValue - opponentTotal.integerValue;
 }
 ```
+
+使得一个策略选择出最优动作的第一步就是确定什么时候当前的游戏状态代表赢，什么时候代表输。你需要在方法`isWinForPlayer:`和`isLossForPlayer:`中提供这些信息。在四子棋的例子中，`runCountsForPlayer`方法提供了一种简便的方法来测试胜利，正如游戏名字一样，将四枚棋子首先连在一起的玩家获胜。
+
+因为这是一个双人游戏，所以一个玩家如果输了，那么他的对手就会获胜，反之亦然，所以你就可以利用`isWinForPlayer:`方法来实现`isLossForPlayer:`方法。（字一个多于两人的游戏中，这个假定就不再成立了。比方说，胜方需要所有对手都输掉才能确定。）
+
+在有了对游戏输赢状态的认识后，*极大化极小*策略就能开始玩游戏了。`GKMinmaxStrategist`类自动忽略了胜利或失败后的可能动作，它会基于还有几步操作来达到胜利或者失败来权衡决策。然而，就现在而言，策略还不太会玩这个游戏（玩不好），因为许多不同的游戏状态却获得导致将来胜利或失败的同样得分。
+
+为了提高*策略*的逻辑，使用`scoreForPlayer:`方法来实现一个启发式算法，它将就玩家预估出当前棋局的状态如何。另外，一个得分表示了玩家有多大可能性获胜或者还有多久获胜。在四子棋的例子中，我们在`runCountsForPlayer`方法中使用这个启发式算法，比如说，一方有两条两两子连线的就比没有任何两子连线的对手更加可能获胜。因为玩家的胜利和失败是相对的，所以`scoreForPlayer:`方法综合得到当前方已有的行数和步数再减去对方的这些数据产生得分。
+
+> **实验**
+> 这个启发式算法足以应付中等难度的游戏逻辑，但是还不够好。请为一个强大的计算机对手提高启发算法的强度。
+> 
+- 较长的列获得更高的权重。比如，棋盘之中存在三个棋子长度的一列，要比两个棋子长度的一列好。
+- 考虑玩家是否可以在一列同方棋子中间空格处落子获胜。就是说，如果一方有两个连续的棋子，一个空格，之后又有一枚棋子在列，那么这种局面的得分和三个连续棋子一列的得分是一样的。
+- 排除将那些已经被隔断的一列。如果玩家在一列中有三枚棋子，但是对方的棋子阻隔了这列棋子的两端，这一列就不可能获胜了。
+
+最后，游戏的模型类必须支持拷贝它本身和它所包含的棋盘状态，那样*策略*就可以通过拷贝多个棋盘来计算未来的可能结果。代码 5-7 显示了`AAPLBoard`类如何拷贝它自身。
+
+**代码 5-7** GKGameModel 实现：拷贝状态信息
+
+```oc
+- (void)setGameModel:(AAPLBoard *)gameModel {
+    memcpy(_cells, gameModel->_cells, sizeof(_cells));
+    self.currentPlayer = gameModel.currentPlayer;
+}
+ 
+- (id)copyWithZone:(NSZone *)zone {
+    AAPLBoard *copy = [[[self class] allocWithZone:zone] init];
+    [copy setGameModel:self];
+    return copy;
+}
+```
+
+其中，`setGameModel:`方法拷贝出一个`GKGameModel`对象的内部状态。此处，`AAPLBoard`类简单的拷贝了它的`_cells`数组和`currentPlayer`属性。`GKGameModel`协议需要符合`NSCopying`协议，那样`copyWithZone:`方法通过使用`setGameModel:`方法来拷贝出一个`AAPLBoard`的实例。
+
+*策略*通过多次拷贝`GKGameModel`类再调用`setGameModel:`方法来模拟可能的步数。比如，在四子棋的第六回合（有可能有七个可能落子的步数）需要检查成百上千的棋盘状态。（GameplayKit 并不是持续创建游戏模型的新拷贝，而是生成一小部分拷贝，再利用`setGameModel:`方法重用这些实例，因此提高了内存效率。）
+
+> **重要**
+> 因为 GameplayKit 可以一次模拟数以千计的游戏状态，所以`GKGameModel`类和`setGameModel:`方法的大小和复杂度限制了游戏的性能。确保你的游戏在描述游戏状态的过程中只使用基本的数据信息，那样`setGameModel:`方法就能更快的拷贝这些信息。（而无需创建新的对象或者申请更多内存。）
+
+### 使用 Strategist 对象来计划操作
+
+当你在游戏逻辑中应用完`GKGameModel`以及相关的协议之后，使用*极小化极大策略*只需要最后几步。请下载四子棋游戏的代码，来查看如何实现这些步骤。
+
+1. 始终把`GKMinmaxStrategist`实例放在管理游戏的管理其中，如一个试图管理器或者 SpriteKit 场景中。
+2. 使用`GKMinmaxStrategist`对象的`gameModel`属性指向游戏的当前状态。那样你的模型对象就符合`GKGameModel`协议的要求了。通常
+情况你只需一在游戏初始化的时候实现这一步，因为`gameModel`属性始终是这个`GKGameModel`对象的引用，无论该对象的内部状态如何改变。然而如果你准备为游戏模型类使用一个新的实例（如，重置棋盘状态开始新的棋局），请确保再次设置`gameModel`属性。
+3. 为`maxLookAheadDepth`属性设置一个数字来表示你想要计算未来游戏状态的步数。一般的，越多步数推导就会使得电脑方难度越大。同时，越多步数的推导也让*策略*的计算发生了几何趋势的增长。在不牺牲性能的前提下，合理的为你的游戏的不同难度设置这个值。比如四子棋游戏需要一行存在连续的四枚棋子。那么，如果一个电脑玩家总是在最佳位置落子，理论上说电脑总是可能取胜或者将棋盘的七行都堆满，也就是说四个己方回合三个对方回合。（无论这个理论是否成立都取决于你如何实现`scoreForPlayer:`方法。）就这个游戏而言，七层深度的结果预测将计算将近百万次棋盘状态。
+4. 使用`bestMoveForPlayers:`方法来计划电脑方德下一步行动。这个方法返回一个对应这个行动`GKGameModelUpdate`对象（在四子棋游戏中返回`AAPLMove`对象）。使用逻辑中的`applyGameModeUpdate:`方法来执行这个行动。另外，使用在 [GKMinmaxStrategist Class Reference](https://developer.apple.com/library/prerelease/ios/documentation/GameplayKit/Reference/GKMinmaxStrategist_Class/index.html) 中列出的其他方法，这些方法提供了一些参数让你处理有多个最好或者随机行动的情况。
+
+> **注意**
+> 找到最优步数会花费相当一款时间，尤其是预测了许多步的时候。为了保证游戏界面的流畅运行，你需要使用后台队列来运行*策略*的计算。请查看 [Concurrency Programming Guide](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/ConcurrencyProgrammingGuide/Introduction/Introduction.html) 了解更多细节。
