@@ -54,7 +54,7 @@
 
 ## 状态机的使用
 
-在 GameplayKit 中，一个`GKStateMachine`类的实例就是一个状态机。我们为每一个状态创建一个`GKState`子类，用来定义状态所对应的动作逻辑，以及何时切入或者切出该状态。在某个特定时刻，一个状态机只会有一个特定状态。如果你需要对你的游戏物体的每一帧更新逻辑时（比如调用 SpriteKit 场景的`update:`方法，或者 SceneKit 的渲染代理的`renderer:updateAtTime:`方法），你可以调用状态机的`updateWithDeltaTime:`方法，这时状态机会调用当前状态下状态对象的相同方法。当你的游戏逻辑需要切换一个状态时，调用状态机的`enterState:`方法来选择一个新的状态。
+在 GameplayKit 中，一个 [GKStateMachine](https://developer.apple.com/library/prerelease/ios/documentation/GameplayKit/Reference/GKStateMachine_Class/index.html#//apple_ref/occ/cl/GKStateMachine) 类的实例就是一个状态机。我们为每一个状态创建一个 [GKState](https://developer.apple.com/library/prerelease/ios/documentation/GameplayKit/Reference/GKState_Class/index.html#//apple_ref/occ/cl/GKState) 子类，用来定义状态所对应的动作逻辑，以及何时切入或者切出该状态。在某个特定时刻，一个状态机只会有一个特定状态。如果你需要对你的游戏物体的每一帧更新逻辑时（比如调用 SpriteKit 场景的 [update:](https://developer.apple.com/library/prerelease/ios/documentation/SpriteKit/Reference/SKScene_Ref/index.html#//apple_ref/occ/instm/SKScene/update:) 方法，或者 SceneKit 的渲染代理的 [renderer:updateAtTime:](https://developer.apple.com/library/prerelease/ios/documentation/SceneKit/Reference/SCNSceneRendererDelegate_Protocol/index.html#//apple_ref/occ/intfm/SCNSceneRendererDelegate/renderer:updateAtTime:) 方法），你可以调用状态机的 [updateWithDeltaTime:](https://developer.apple.com/library/prerelease/ios/documentation/GameplayKit/Reference/GKStateMachine_Class/index.html#//apple_ref/occ/instm/GKStateMachine/updateWithDeltaTime:) 方法，这时状态机会调用当前状态下状态对象的相同方法。当你的游戏逻辑需要切换一个状态时，调用状态机的 [enterState:](https://developer.apple.com/library/prerelease/ios/documentation/GameplayKit/Reference/GKStateMachine_Class/index.html#//apple_ref/occ/instm/GKStateMachine/enterState:) 方法来选择一个新的状态。
 
 **迷宫（Maze）**项目（已经在 [Entities and Components](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/EntityComponent.html#//apple_ref/doc/uid/TP40015172-CH6-SW1) 章节被提及的）是基于一些经典解密游戏实现的。这个游戏分别使用不同的状态机实例来整体驱动每一个游戏中的敌方角色。一般情况下，怪物（敌方角色）追杀玩家，但是玩家一旦获得能力提升就可以击杀怪物，而这时怪物就会逃跑。而怪物被击杀后，它们会重新回到一个刷新点，并在一定时间后刷新。
 
@@ -62,7 +62,7 @@
 
 ### 定义状态和行为
 
-这个状态机（指迷宫游戏）中的每一个状态都是`GKState`的一个子类，这个子类实现这个状态下的具体行为。该状态机包含四个状态子类：`AAPLEnemyChaseState`，`AAPLEnemyFleeState`，`AAPLEnemyDefeatedState`，和`AAPLEnemyRespawnState`。所有的四个子类都需要确保获得整个游戏世界的基本信息，所以这些子类都继承于一个`AAPLEnemyState`类，这个类定义了供状态类使用的属性和公用的初始化方法。代码 4-1 是这些类的定义：
+这个状态机（指迷宫游戏）中的每一个状态都是 [GKState](https://developer.apple.com/library/prerelease/ios/documentation/GameplayKit/Reference/GKState_Class/index.html#//apple_ref/occ/cl/GKState) 的一个子类，这个子类实现这个状态下的具体行为。该状态机包含四个状态子类：`AAPLEnemyChaseState`，`AAPLEnemyFleeState`，`AAPLEnemyDefeatedState`，和`AAPLEnemyRespawnState`。所有的四个子类都需要确保获得整个游戏世界的基本信息，所以这些子类都继承于一个`AAPLEnemyState`类，这个类定义了供状态类使用的属性和公用的初始化方法。代码 4-1 是这些类的定义：
 
 **代码 4-1** 敌方角色状态定义
 
@@ -74,17 +74,17 @@
 - (instancetype)initWithGame:(AAPLGame *)game entity:(AAPLEntity *)entity;
 // ...
 @end
- 
+
 @interface AAPLEnemyChaseState : AAPLEnemyState
 @end
- 
+
 @interface AAPLEnemyFleeState : AAPLEnemyState
 @end
- 
+
 @interface AAPLEnemyDefeatedState : AAPLEnemyState
 @property GKGridGraphNode *respawnPosition;
 @end
- 
+
 @interface AAPLEnemyRespawnState : AAPLEnemyState
 @end
 
@@ -92,7 +92,7 @@
 
 这些状态类大多不需要额外的公共属性——他们需要的关于游戏世界的所有信息来自他们对主`AAPLGame`对象的引用。这个引用是一个弱（weak）引用，因为这些状态对象属于状态机，而这些状态机属于怪物，这些怪物又属于`Game`对象。
 
-之后，每一个状态类通过重写`GKState`的`enter`，`exit`和`update`方法来定义该状态下的具体行为。下面的代码 4-2举例说明了敌方角色追逐状态的实现。
+之后，每一个状态类通过重写 [GKState](https://developer.apple.com/library/prerelease/ios/documentation/GameplayKit/Reference/GKState_Class/index.html#//apple_ref/occ/cl/GKState) 的`enter`，`exit`和`update`方法来定义该状态下的具体行为。下面的代码 4-2举例说明了敌方角色追逐状态的实现。
 
 **代码 4-2** 追逐状态的实现
 
@@ -105,37 +105,37 @@
 - (void)didEnterWithPreviousState:(__nullable GKState *)previousState {
     AAPLSpriteComponent *component = (AAPLSpriteComponent *)[self.entity componentForClass:[AAPLSpriteComponent class]];
     [component useFleeAppearance];
- 
+
     // 选择一个目标的坐标，并追赶。
     // ...
 }
- 
+
 - (void)updateWithDeltaTime:(NSTimeInterval)seconds {
     // 如果怪物已经干掉当前目标，则寻找下一个目标。
     // ...
- 
+
     // 向当前目标的位置追赶。
     [self startFollowingPath:[self pathToNode:self.target]];
 }
 
 ```
 
-当状态机切换到某个状态时，状态机将调用该状态对象的`didEnterWithPreviousState`方法。在逃跑状态中，这个方法使用游戏中的`SpriteComponent`类改变怪物的显示效果。（请查看 [Entities and Components](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/EntityComponent.html#//apple_ref/doc/uid/TP40015172-CH6-SW1) 章节关于该类的讨论。）同时，这个方法也为怪物选择了一个迷宫中的随机位置用来逃跑。
+当状态机切换到某个状态时，状态机将调用该状态对象的 [didEnterWithPreviousState:](https://developer.apple.com/library/prerelease/ios/documentation/GameplayKit/Reference/GKState_Class/index.html#//apple_ref/occ/instm/GKState/didEnterWithPreviousState:) 方法。在逃跑状态中，这个方法使用游戏中的`SpriteComponent`类改变怪物的显示效果。（请查看 [Entities and Components](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/EntityComponent.html#//apple_ref/doc/uid/TP40015172-CH6-SW1) 章节关于该类的讨论。）同时，这个方法也为怪物选择了一个迷宫中的随机位置用来逃跑。
 
-动画每一帧都会调用`updateWithDeltaTime`方法（本质上，来自于 SpriteKit 场景中的`update:`方法）。在这个方法中，逃跑状态对象将持续的重新计算它和目标角色坐标的路径，并且控制怪物沿着该路径移动。（请查看 [Pathfinding](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/Pathfinding.html#//apple_ref/doc/uid/TP40015172-CH3-SW1) 章节来深入讨论这个方法的实现。）
+动画每一帧都会调用 [updateWithDeltaTime:](https://developer.apple.com/library/prerelease/ios/documentation/GameplayKit/Reference/GKState_Class/index.html#//apple_ref/occ/instm/GKState/updateWithDeltaTime:) 方法（本质上，来自于 SpriteKit 场景中的 [update:](https://developer.apple.com/library/prerelease/ios/documentation/SpriteKit/Reference/SKScene_Ref/index.html#//apple_ref/occ/instm/SKScene/update:) 方法）。在这个方法中，逃跑状态对象将持续的重新计算它和目标角色坐标的路径，并且控制怪物沿着该路径移动。（请查看 [Pathfinding](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/Pathfinding.html#//apple_ref/doc/uid/TP40015172-CH3-SW1) 章节来深入讨论这个方法的实现。）
 
-你可以通过重写每个状态类的`isValidNextState:`方法来执行当前状态的先决条件和不变因素。在迷宫游戏中，重生状态只会是由击杀状态切换而来，不会从追逐或者逃跑状态切换而来。因此，`EnemyRespawnState`类中的代码可以安全的假定所有击杀状态相关的效果都已经发生过了。
+你可以通过重写每个状态类的 [isValidNextState:](https://developer.apple.com/library/prerelease/ios/documentation/GameplayKit/Reference/GKState_Class/index.html#//apple_ref/occ/instm/GKState/isValidNextState:) 方法来执行当前状态的先决条件和不变因素。在迷宫游戏中，重生状态只会是由击杀状态切换而来，不会从追逐或者逃跑状态切换而来。因此，`EnemyRespawnState`类中的代码可以安全的假定所有击杀状态相关的效果都已经发生过了。
 
 ### 创建并驱动一个状态机
 
-在你定义了`GKState`子类之后，你可以使用他们来创建状态机。在迷宫游戏中，`AAPLIntelligenceComponent`组件对象为每个怪物管理一个状态机。（请查看 [Entities and Components](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/EntityComponent.html#//apple_ref/doc/uid/TP40015172-CH6-SW1) 章节了解更多关于基于组件设计的游戏。）建立一个状态机是简单地创建并配置每个状态类实例的问题，如代码 4-3 所示，建一个`GKStateMachine`实例包含这些状态对象：
+在你定义了 [GKState](https://developer.apple.com/library/prerelease/ios/documentation/GameplayKit/Reference/GKState_Class/index.html#//apple_ref/occ/cl/GKState) 子类之后，你可以使用他们来创建状态机。在迷宫游戏中，`AAPLIntelligenceComponent`组件对象为每个怪物管理一个状态机。（请查看 [Entities and Components](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/EntityComponent.html#//apple_ref/doc/uid/TP40015172-CH6-SW1) 章节了解更多关于基于组件设计的游戏。）建立一个状态机是简单地创建并配置每个状态类实例的问题，如代码 4-3 所示，建一个 [GKStateMachine](https://developer.apple.com/library/prerelease/ios/documentation/GameplayKit/Reference/GKStateMachine_Class/index.html#//apple_ref/occ/cl/GKStateMachine) 实例包含这些状态对象：
 
 **代码 4-3** 定义一个状态机
 
 ```oc
 
 @implementation AAPLIntelligenceComponent
- 
+
 - (instancetype)initWithGame:(AAPLGame *)game enemy:(AAPLEntity *)enemy startingPosition:(GKGridGraphNode *)origin {
     self = [super init];
     if (self) {
@@ -144,24 +144,24 @@
         AAPLEnemyDefeatedState *defeated = [[AAPLEnemyDefeatedState alloc] initWithGame:game entity:enemy];
         defeated.respawnPosition = origin;
         AAPLEnemyRespawnState *respawn = [[AAPLEnemyRespawnState alloc] initWithGame:game entity:enemy];
- 
+
         _stateMachine = [GKStateMachine stateMachineWithStates:@[chase, flee, defeated, respawn]];
         [_stateMachine enterState:[AAPLEnemyChaseState class]];
     }
     return self;
 }
- 
+
 - (void)updateWithDeltaTime:(NSTimeInterval)seconds {
     [self.stateMachine updateWithDeltaTime:seconds];
 }
- 
+
 @end
 
 ```
 
-之后，游戏为每一个怪物（敌方角色）创建了`AAPLIntelligenceComponent`类的实例。为了支持每一帧调用每个状态类的更新逻辑，`AAPLIntelligenceComponent`类使用它的`updateWithDeltaTime:`方法来调用状态机上相应的方法。反之，状态机也会调用当前状态的更新方法——所以，当追逐状态被激活时，追逐状态的更新逻辑才会被执行。
+之后，游戏为每一个怪物（敌方角色）创建了`AAPLIntelligenceComponent`类的实例。为了支持每一帧调用每个状态类的更新逻辑，`AAPLIntelligenceComponent`类使用它的 [updateWithDeltaTime:](https://developer.apple.com/library/prerelease/ios/documentation/GameplayKit/Reference/GKComponent_Class/index.html#//apple_ref/occ/instm/GKComponent/updateWithDeltaTime:) 方法来调用状态机上相应的方法。反之，状态机也会调用当前状态的更新方法——所以，当追逐状态被激活时，追逐状态的更新逻辑才会被执行。
 
-每当游戏中的状态需要发生变化，状态机需要调用`enterState:`方法在状态之间切换。在迷宫游戏中，每个怪物的状态机从追逐状态开始，在一些特殊时候发生改变：
+每当游戏中的状态需要发生变化，状态机需要调用 [enterState:](https://developer.apple.com/library/prerelease/ios/documentation/GameplayKit/Reference/GKStateMachine_Class/index.html#//apple_ref/occ/instm/GKStateMachine/enterState:) 方法在状态之间切换。在迷宫游戏中，每个怪物的状态机从追逐状态开始，在一些特殊时候发生改变：
 
 - 游戏中`AAPLGame`对象始终追踪玩家是否获得能力提升。当玩家角色获得或者失去能力提升时，`setHasPowerup:`方法将把所有怪物的当前状态改变为逃跑或者追逐状态，分别如下面的代码所示：
 
@@ -186,15 +186,15 @@
     _hasPowerup = hasPowerup;
 }
 
-``` 
+```
 
 - 不但如此，`AAPLGame`对象仍然负责处理 SpriteKit 提供的物理碰撞。当玩家角色碰上怪物之后，游戏会首先根据怪物的当前状态来决定他们的碰撞的结果。如果怪物处于逃跑状态，玩家将杀掉怪物，于是怪物进入到击杀状态。
 
-- `AAPLEnemyDefeatedState`类将一个被击杀的怪物移动到初始点，之后切换到重生状态。为了完成这个任务，该状态计算出到达初始点的路径，之后使用游戏中的`AAPLSpriteComponent`类生成一组`SKAction`动作序列。这组序列将怪物沿着路径移动，在所有的动作完成之后，怪物移动到路径的结尾，之后怪物切换到重生状态。
+- `AAPLEnemyDefeatedState`类将一个被击杀的怪物移动到初始点，之后切换到重生状态。为了完成这个任务，该状态计算出到达初始点的路径，之后使用游戏中的`AAPLSpriteComponent`类生成一组 [SKAction](https://developer.apple.com/library/prerelease/ios/documentation/SpriteKit/Reference/SKAction_Ref/index.html#//apple_ref/occ/cl/SKAction) 动作序列。这组序列将怪物沿着路径移动，在所有的动作完成之后，怪物移动到路径的结尾，之后怪物切换到重生状态。
 
   请参考 [Pathfinding](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/Pathfinding.html#//apple_ref/doc/uid/TP40015172-CH3-SW1) 和 [Entities and Components](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/EntityComponent.html#//apple_ref/doc/uid/TP40015172-CH6-SW1) 章节来了解更多游戏中`AAPLSpriteComponent`类型的细节。
 
-- `AAPLEnemyRespawnState`类将计算一段等待时间，让怪物重新回到迷宫之中。这个状态类使用`updateWithDeltaTime:`方法来检测是否经历一段时间并切换到追逐状态：
+- `AAPLEnemyRespawnState`类将计算一段等待时间，让怪物重新回到迷宫之中。这个状态类使用 [updateWithDeltaTime:](https://developer.apple.com/library/prerelease/ios/documentation/GameplayKit/Reference/GKState_Class/index.html#//apple_ref/occ/instm/GKState/updateWithDeltaTime:) 方法来检测是否经历一段时间并切换到追逐状态：
 
 ```oc
 
