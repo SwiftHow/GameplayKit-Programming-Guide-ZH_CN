@@ -1,29 +1,30 @@
-# GameplayKit-Programming-Guide-ZH_CN
-苹果官方 GameplayKit Programming Guide 中文翻译。
+# GameplayKit 编程指南
 
-关于章节顺序，会在翻译完成后统一整理。
+💐💐💐💐💐💐💐💐💐💐💐💐
 
-- 如果你对翻译感兴趣：请加入QQ群：364279588（Swift 中文翻译组）
-- 如果你对用Swift开发游戏，或者是一个游戏开发者，请加入QQ群：453564812 （Swift 游戏开发交流组）
+苹果官方 [GameplayKit Programming Guide](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/index.html) 中文翻译。如果你是一个游戏开发者，请加入QQ群：453564812（Swift 游戏开发交流组）
 
-## 如何参与
-- 请提交一个 [Issue](https://github.com/SwiftHow/GameplayKit-Programming-Guide-ZH_CN/issues)，或者联系 [Evilcome](https://github.com/Evilcome)，或者联系QQ：996102034，请注明翻译。
-- 取得联系后请认领章节，我会更新章节认领状态。
-- 翻译完成后，传给我MD文档，或者使用Pull Request合并文件。
+## 阅读方式
+- **感谢 [readme.io](http://readme.io/) 提供的支持：[GameplayKit 编程指南在线文档](https://gameplaykit-programming-guide-chinese.readme.io/) 。**
+- **您可以直接 Clone 本项目，阅读文档。**
+- **您可以查看 GameplayKit 的相关博客 [GameplayKit - SWIFT.HOW](http://swift.how/tag/gameplaykit)。**
 
-## 已完成章节
-| 原文 | 译文 | BLOG |
-| ------ | ------ | ------ | ------ |
-| [Entities and Components](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/EntityComponent.html)  | [实体与组件](./Designing Game Architecture/Entities and Components.md) | [翻译：GameplayKit 中的实体与组件](https://swift.how/2015/08/14/gameplaykit-entity-and-component-zh_cn/) |
-| [State Machines](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/StateMachine.html) | [状态机](./Designing Game Architecture/State Machines.md) | [翻译：GameplayKit 中的状态机](https://swift.how/2015/08/15/gameplaykit-state-machines-zh_cn/) |
-|  [Randomization](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/RandomSources.html#//apple_ref/doc/uid/TP40015172-CH9-SW1) | [随机化](./Designing Game Architecture/Randomization.md) | [翻译：GameplayKit 中的随机化](https://swift.how/2015/08/17/gameplaykit-randomization-zh_cn/) |
-| [Pathfinding](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/Pathfinding.html#//apple_ref/doc/uid/TP40015172-CH3-SW1)| [寻路](./Building Great Gameplay/Pathfinding.md) | [翻译：GameplayKit 中的寻路机制](https://swift.how/2015/08/18/gameplaykit-pathfinding-zh_cn/) |
-| [About GameplayKit](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172-CH1-SW1) | [关于 GameplayKit](./Getting Started/About GameplayKit.md) | 无 |
-| [The Minmax Strategist](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/Minmax.html#//apple_ref/doc/uid/TP40015172-CH2-SW1) | [极小化极大策略](./Building Great Gameplay/The Minmax Strategist.md) | [翻译：GameplayKit 中的极小化极大策略](https://swift.how/2015/08/21/gameplaykit-the-minmax-strategist-zh_cn/)
-| [Rule Systems](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/RuleSystems.html#//apple_ref/doc/uid/TP40015172-CH10-SW1) | [规则系统](./Building Great Gameplay/Rule Systems.md) | 无 |
+如您喜欢，请给我们加颗**星**哦~~~
 
+## 译文与原文
 
-## 未完成章节
-| 原文 | 认领状态 |
-| ------ | ------ |
-| [Agents, Goals, and Behaviors](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/Agent.html#//apple_ref/doc/uid/TP40015172-CH8-SW1) | [kenticny](https://github.com/kenticny) 已认领 |
+- 起步
+	- [关于 GameplayKit](./Getting Started/About GameplayKit.md)(原文：[About GameplayKit](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/index.html))
+- 游戏架构设计
+	- [状态机](./Designing Game Architecture/State Machines.md)(原文：[State Machines](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/StateMachine.html))
+	- [实体与组件](./Designing Game Architecture/Entities and Components.md)(原文：[Entities and Components](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/EntityComponent.html))
+	- [随机化](./Designing Game Architecture/Randomization.md)(原文：[Randomization](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/RandomSources.html))
+- 构建游戏逻辑
+	- [极小化极大策略](./Building Great Gameplay/The Minmax Strategist.md)(原文：[The Minmax Strategist](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/Minmax.html))
+	- [寻路](./Building Great Gameplay/Pathfinding.md)(原文：[Pathfinding](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/Pathfinding.html))
+	- [代理，目标，行为](./Building Great Gameplay/Agents, Goals, and Behaviors.md)(原文：[Agents, Goals, and Behaviors](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/Agent.html))
+	- [规则系统](./Building Great Gameplay/Rule Systems.md)(原文：[Rule Systems](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/RuleSystems.html))
+
+## 校对和侦错
+
+因为翻译水平有限，如您发现翻译中的错误，请打开一个 [Issue](https://github.com/SwiftHow/GameplayKit-Programming-Guide-ZH_CN/issues) ，提交一个PR，或者设法与我们取得联系，不胜感激。
