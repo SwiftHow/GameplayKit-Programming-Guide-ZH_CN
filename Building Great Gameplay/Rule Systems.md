@@ -221,11 +221,11 @@ if huntPlayerBot >= huntTaskBot && huntPlayerBot > 0.0 {
 
 1. 比较系统中事实的等级获得结论。在模糊逻辑中，最小值函数（在上面的例子中，[minimumGradeForFacts:](https://developer.apple.com/library/prerelease/ios/documentation/GameplayKit/Reference/GKRuleSystem_Class/index.html#//apple_ref/occ/instm/GKRuleSystem/minimumGradeForFacts:) 调用的）和最大值函数（`reduce(_:combine:)`调用的）表面上与布尔逻辑运算符的“与”和“或”是类似的。因此，`huntPlayerBotRaw`和`huntPlayerBot`的计算和下面的伪代码是一样:
 
-```
-untPlayerBot = (PlayerBotNear AND BadTaskBotPercentageHigh) OR (PlayerBotNear AND BadTaskBotPercentageMedium) OR ...
-```
+	```
+	untPlayerBot = (PlayerBotNear AND BadTaskBotPercentageHigh) OR (PlayerBotNear AND BadTaskBotPercentageMedium) OR ...
+	```
 
-然而，不像布尔逻辑，计算中的每一个元素都是一个等级—一个断言的可信度—得到的`huntPlayerBot`值也是一个等级。你可以把它当成一个概率：“我需要寻找的玩家可能是。。。”
+	然而，不像布尔逻辑，计算中的每一个元素都是一个等级—一个断言的可信度—得到的`huntPlayerBot`值也是一个等级。你可以把它当成一个概率：“我需要寻找的玩家可能是。。。”
 
 2. 使用这个结论去选择一个行动。对`TaskBot`对象的`mandate`属性设置值，决定了游戏在下面几个时刻的目标。如果`huntPlayerBot`的得分非零，并且大于 `huntTaskBot`的得分，那么这个机器人会去攻击玩家角色；如果`huntTaskBot`较高，那么这个机器人将会把最近的好机器人变坏；如果两个得分都是零，那么这个机器人仅会在线路上巡逻。
 这个目标会一直维持到下次规则系统的计算。同时，在游戏的其他模块中，每帧更新的方法会使用授权的值去驱动机器人的行为。根据机器人的任务，负责机器人运动的 [GKAgent](https://developer.apple.com/library/prerelease/ios/documentation/GameplayKit/Reference/GKAgent_Class/index.html#//apple_ref/occ/cl/GKAgent) 对象会获取一组目标，然后让这些机器人发现并按照一定的路径去追踪目标，或者不同的目标，让机器人在游戏中巡逻。
