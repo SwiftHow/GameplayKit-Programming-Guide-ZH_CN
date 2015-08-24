@@ -22,7 +22,7 @@
 - 构建游戏逻辑
 	- [极小化极大策略](./Building Great Gameplay/The Minmax Strategist.md)(原文：[The Minmax Strategist](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/Minmax.html))
 	- [寻路](./Building Great Gameplay/Pathfinding.md)(原文：[Pathfinding](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/Pathfinding.html))
-	- [代理，目标，行为](./Building Great Gameplay/Agents, Goals, and Behaviors.md)(原文：[Agents, Goals, and Behaviors](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/Agent.html))
+	- [代理，目标和行为](./Building Great Gameplay/Agents, Goals, and Behaviors.md)(原文：[Agents, Goals, and Behaviors](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/Agent.html))
 	- [规则系统](./Building Great Gameplay/Rule Systems.md)(原文：[Rule Systems](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/GameplayKit_Guide/RuleSystems.html))
 
 ## 校对和侦错
